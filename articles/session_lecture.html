@@ -303,7 +303,7 @@
 </li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu">survfit</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call: survfit(formula = Surv(time, cens) ~ group, data = leuk)
 ## 
 ##                n events median 0.95LCL 0.95UCL
@@ -319,7 +319,7 @@
 <li>With events, a simple median will <em>under-estimate</em> the potential follow-up time. Use a reverse Kaplan-Meier estimate instead:</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu">survfit</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="fl">1</span><span class="op">-</span><span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="fl">1</span><span class="op">-</span><span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call: survfit(formula = Surv(time, 1 - cens) ~ group, data = leuk)
 ## 
 ##                n events median 0.95LCL 0.95UCL
@@ -384,7 +384,7 @@
 <p>Logrank test is just a chisquare test on the observed and expected number of events:</p>
 
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu">survdiff</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survdiff.html">survdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = Surv(time, cens) ~ group, data = leuk)
 ## 
