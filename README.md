@@ -13,8 +13,8 @@
 3. Define survival function, hazard functions, cumulative event function
 4. Perform a Kaplan-Meier estimate
 5. Perform, interpret, and identify assumptions of the logrank test
-6. Define **potential follow-up time**
-7. Calculate median survival time and potential follow-up time
+6. Define and calculate potential follow-up time
+7. Calculate median survival time
 
 **Outline**
 
@@ -24,10 +24,9 @@
     + Assumption of uninformative censoring
 2. Survival function and Kaplan-Meier estimator
 3. Comparing groups: Log-rank test
-4. Relationship between censored 
 
 * Vittinghoff sections 3.1-3.5
-
+* Tutorial Paper _Survival Analysis Part I: Basic concepts and first analyses_ by Clark, Bradburn, Love, Altman. British Journal of Cancer (2003) 89, 232 – 238
 
 ## Lab
 
