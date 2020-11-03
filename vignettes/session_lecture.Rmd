@@ -268,6 +268,8 @@ plot(
 
 # Comparing Groups Using the Logrank Test
 
+## Log-rank test 
+
 * *logrank test* is used to compare survival between two or more groups
     + $H_0$ is that the population survival functions are equal at all follow-up times
     + $H_1$ is that the population survival functions differ at at least one follow-up time
@@ -275,9 +277,9 @@ plot(
     + Observed is just what we see.
     + How to calculate expected?
 
-## Setting for the Logrank Test
+## Log-rank test (cont'd)
 
-$H_0$: The risk in two or more groups is the same. Observed differences in numbers of events only occur by chance.
+Logrank test is just a chisquare test on the observed and expected number of events:
 
 \footnotesize
 ```{r}
