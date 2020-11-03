@@ -160,7 +160,9 @@ outline}\label{learning-objectives-and-outline}}
 \begin{enumerate}
 \tightlist
 \item
-  Distinguish censored data from binary or continuous data
+  Define main types of censoring
+\item
+  Define the assumption of uninformative censoring
 \item
   Define survival function, hazard functions, cumulative event function
 \item
@@ -188,12 +190,16 @@ outline}\label{learning-objectives-and-outline}}
   \item
     Outcome variable: time-to-event
   \item
-    Censored data
+    Types of censored data
+  \item
+    Assumption of uninformative censoring
   \end{itemize}
 \item
   Survival function and Kaplan-Meier estimator
 \item
   Comparing groups: Log-rank test
+\item
+  Relationship between censored
 \end{enumerate}
 
 \begin{itemize}
@@ -310,15 +316,110 @@ disease severity?}
 
 \end{frame}
 
-\begin{frame}{Definitions}
-\protect\hypertarget{definitions}{}
+\begin{frame}{Left / right / interval censoring}
+\protect\hypertarget{left-right-interval-censoring}{}
 
-\emph{Definition}: A survival time is said to be \emph{right-censored}
-at time t if it is only known to be greater than t.
+\begin{itemize}
+\tightlist
+\item
+  \emph{right censoring}: The event (if it occurs) happens past the end
+  of the observation period
+\item
+  \emph{left censoring}: We observe the presence of a state or condition
+  but do not know when it began.
 
-\emph{Definition}: The \emph{survival function} at time t, denoted
-\(S(t)\), is the probability of being event-free at t. Equivalently, it
-is the probability that the survival time is greater than t.
+  \begin{itemize}
+  \tightlist
+  \item
+    Example: a study investigating the time to recurrence of a cancer
+    following surgical removal of the primary tumor. If the patients
+    were examined 3 months after surgery to determine recurrence, then
+    those who had a recurrence would have a survival time that was left
+    censored because the actual time of recurrence occurred less than 3
+    months after surgery.
+  \end{itemize}
+\item
+  \emph{interval censoring}: individuals come in and out of observation.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Classes of uninformative censoring}
+\protect\hypertarget{classes-of-uninformative-censoring}{}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{type 1 censoring}: The total duration of the study is fixed
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a generalization is \emph{fixed censoring}: each individual has a
+    potentially different maximum observation time, but still fixed in
+    advance
+  \end{itemize}
+\item
+  \emph{type 2 censoring}: The sample is followed as long as necessary
+  until a pre-specified number of events have occurred
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the length of the study is unknown in advance
+  \end{itemize}
+\item
+  \emph{random censoring}: the censoring times are independent random
+  variables
+\end{itemize}
+
+These are all analyzed in essentially the same way.
+
+\footnotesize
+
+Source: \url{https://data.princeton.edu/wws509/notes/c7.pdf}
+
+\end{frame}
+
+\hypertarget{informative-uninformative-censoring}{%
+\section{Informative / uninformative
+censoring}\label{informative-uninformative-censoring}}
+
+\begin{frame}{Informative / uninformative censoring}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Uninformative censoring}: The most basic assumption we will make
+  is that the censoring of an observation does not provide any
+  information about survival other than that it exceeds the time of the
+  censoring
+\item
+  Can be violated if, for example, higher risk of death causes study
+  dropout
+\item
+  Similar to when we assume data missing at random or completely at
+  random
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Survival function S(t)}
+\protect\hypertarget{survival-function-st}{}
+
+\begin{itemize}
+\tightlist
+\item
+  The Survival function at time t, denoted \(S(t)\), is the probability
+  of being event-free at t.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Equivalently, it is the probability that the survival time is
+    greater than t.
+  \end{itemize}
+\end{itemize}
 
 \end{frame}
 

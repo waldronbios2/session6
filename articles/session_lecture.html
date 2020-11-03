@@ -108,7 +108,8 @@
 <h2 class="hasAnchor">
 <a href="#learning-objectives" class="anchor"></a>Learning objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Distinguish censored data from binary or continuous data</li>
+<li>Define main types of censoring</li>
+<li>Define the assumption of uninformative censoring</li>
 <li>Define survival function, hazard functions, cumulative event function</li>
 <li>Perform a Kaplan-Meier estimate</li>
 <li>Perform, interpret, and identify assumptions of the logrank test</li>
@@ -124,11 +125,13 @@
 <li>Introduction to censored data
 <ul>
 <li>Outcome variable: time-to-event</li>
-<li>Censored data</li>
+<li>Types of censored data</li>
+<li>Assumption of uninformative censoring</li>
 </ul>
 </li>
 <li>Survival function and Kaplan-Meier estimator</li>
 <li>Comparing groups: Log-rank test</li>
+<li>Relationship between censored</li>
 </ol>
 <ul>
 <li>Vittinghoff sections 3.1-3.5</li>
@@ -196,11 +199,65 @@
 <p><em>Question #1: which patients are “censored?”</em></p>
 <p><em>Question #2: how would you rank these patients in order of disease severity?</em></p>
 </div>
-<div id="definitions" class="section level2">
+<div id="left-right-interval-censoring" class="section level2">
 <h2 class="hasAnchor">
-<a href="#definitions" class="anchor"></a>Definitions</h2>
-<p><em>Definition</em>: A survival time is said to be <em>right-censored</em> at time t if it is only known to be greater than t.</p>
-<p><em>Definition</em>: The <em>survival function</em> at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being event-free at t. Equivalently, it is the probability that the survival time is greater than t.</p>
+<a href="#left-right-interval-censoring" class="anchor"></a>Left / right / interval censoring</h2>
+<ul>
+<li>
+<em>right censoring</em>: The event (if it occurs) happens past the end of the observation period</li>
+<li>
+<em>left censoring</em>: We observe the presence of a state or condition but do not know when it began.
+<ul>
+<li>Example: a study investigating the time to recurrence of a cancer following surgical removal of the primary tumor. If the patients were examined 3 months after surgery to determine recurrence, then those who had a recurrence would have a survival time that was left censored because the actual time of recurrence occurred less than 3 months after surgery.</li>
+</ul>
+</li>
+<li>
+<em>interval censoring</em>: individuals come in and out of observation.</li>
+</ul>
+</div>
+<div id="classes-of-uninformative-censoring" class="section level2">
+<h2 class="hasAnchor">
+<a href="#classes-of-uninformative-censoring" class="anchor"></a>Classes of uninformative censoring</h2>
+<ul>
+<li>
+<em>type 1 censoring</em>: The total duration of the study is fixed
+<ul>
+<li>a generalization is <em>fixed censoring</em>: each individual has a potentially different maximum observation time, but still fixed in advance</li>
+</ul>
+</li>
+<li>
+<em>type 2 censoring</em>: The sample is followed as long as necessary until a pre-specified number of events have occurred
+<ul>
+<li>the length of the study is unknown in advance</li>
+</ul>
+</li>
+<li>
+<em>random censoring</em>: the censoring times are independent random variables</li>
+</ul>
+<p>These are all analyzed in essentially the same way.</p>
+
+<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
+</div>
+</div>
+<div id="informative-uninformative-censoring" class="section level1">
+<h1 class="hasAnchor">
+<a href="#informative-uninformative-censoring" class="anchor"></a>Informative / uninformative censoring</h1>
+<ul>
+<li>
+<em>Uninformative censoring</em>: The most basic assumption we will make is that the censoring of an observation does not provide any information about survival other than that it exceeds the time of the censoring</li>
+<li>Can be violated if, for example, higher risk of death causes study dropout</li>
+<li>Similar to when we assume data missing at random or completely at random</li>
+</ul>
+<div id="survival-function-st" class="section level2">
+<h2 class="hasAnchor">
+<a href="#survival-function-st" class="anchor"></a>Survival function S(t)</h2>
+<ul>
+<li>The Survival function at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being event-free at t.
+<ul>
+<li>Equivalently, it is the probability that the survival time is greater than t.</li>
+</ul>
+</li>
+</ul>
 </div>
 <div id="leukemia-example-see-leuk-csv" class="section level2">
 <h2 class="hasAnchor">
