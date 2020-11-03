@@ -357,6 +357,9 @@
 <div id="comparing-groups-using-the-logrank-test" class="section level1">
 <h1 class="hasAnchor">
 <a href="#comparing-groups-using-the-logrank-test" class="anchor"></a>Comparing Groups Using the Logrank Test</h1>
+<div id="log-rank-test" class="section level2">
+<h2 class="hasAnchor">
+<a href="#log-rank-test" class="anchor"></a>Log-rank test</h2>
 <ul>
 <li>
 <em>logrank test</em> is used to compare survival between two or more groups
@@ -374,10 +377,11 @@
 </ul>
 </li>
 </ul>
-<div id="setting-for-the-logrank-test" class="section level2">
+</div>
+<div id="log-rank-test-contd" class="section level2">
 <h2 class="hasAnchor">
-<a href="#setting-for-the-logrank-test" class="anchor"></a>Setting for the Logrank Test</h2>
-<p><span class="math inline">\(H_0\)</span>: The risk in two or more groups is the same. Observed differences in numbers of events only occur by chance.</p>
+<a href="#log-rank-test-contd" class="anchor"></a>Log-rank test (cont’d)</h2>
+<p>Logrank test is just a chisquare test on the observed and expected number of events:</p>
 
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu">survdiff</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
