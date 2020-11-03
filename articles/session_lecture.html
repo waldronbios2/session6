@@ -113,9 +113,8 @@
 <li>Define survival function, hazard functions, cumulative event function</li>
 <li>Perform a Kaplan-Meier estimate</li>
 <li>Perform, interpret, and identify assumptions of the logrank test</li>
-<li>Define <strong>potential follow-up time</strong>
-</li>
-<li>Calculate median survival time and potential follow-up time</li>
+<li>Define and calculate potential follow-up time</li>
+<li>Calculate median survival time</li>
 </ol>
 </div>
 <div id="outline" class="section level2">
@@ -131,10 +130,10 @@
 </li>
 <li>Survival function and Kaplan-Meier estimator</li>
 <li>Comparing groups: Log-rank test</li>
-<li>Relationship between censored</li>
 </ol>
 <ul>
 <li>Vittinghoff sections 3.1-3.5</li>
+<li>Tutorial Paper <em>Survival Analysis Part I: Basic concepts and first analyses</em> by Clark, Bradburn, Love, Altman. British Journal of Cancer (2003) 89, 232 – 238</li>
 </ul>
 </div>
 </div>
@@ -214,6 +213,7 @@
 <li>
 <em>interval censoring</em>: individuals come in and out of observation.</li>
 </ul>
+<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
 </div>
 <div id="classes-of-uninformative-censoring" class="section level2">
 <h2 class="hasAnchor">
@@ -235,7 +235,6 @@
 <em>random censoring</em>: the censoring times are independent random variables</li>
 </ul>
 <p>These are all analyzed in essentially the same way.</p>
-
 <p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
 </div>
 </div>
@@ -252,11 +251,9 @@
 <h2 class="hasAnchor">
 <a href="#survival-function-st" class="anchor"></a>Survival function S(t)</h2>
 <ul>
-<li>The Survival function at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being event-free at t.
-<ul>
-<li>Equivalently, it is the probability that the survival time is greater than t.</li>
-</ul>
+<li>The Survival function at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being event-free at t.<br>
 </li>
+<li>Equivalently, it is the probability that the survival time is greater than t.</li>
 </ul>
 </div>
 <div id="leukemia-example-see-leuk-csv" class="section level2">
@@ -291,11 +288,9 @@
 <div id="survival-function-and-kaplan-meier-estimator" class="section level1">
 <h1 class="hasAnchor">
 <a href="#survival-function-and-kaplan-meier-estimator" class="anchor"></a>Survival function and Kaplan-Meier estimator</h1>
-<div id="kaplan-meier-estimate-vs--time" class="section level2">
+<div id="kaplan-meier-estimate" class="section level2">
 <h2 class="hasAnchor">
-<a href="#kaplan-meier-estimate-vs--time" class="anchor"></a>Kaplan-Meier Estimate vs. time</h2>
-<pre><code>## Warning: Vectorized input to `element_text()` is not officially supported.
-## Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<a href="#kaplan-meier-estimate" class="anchor"></a>Kaplan-Meier Estimate</h2>
 <p><img src="session_lecture_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div id="median-survival-time" class="section level2">
@@ -307,7 +302,7 @@
 <li>With censoring, we need to use the Kaplan-Meier estimate of the survival function <span class="math inline">\(\hat S(t)\)</span>
 </li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit">
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu">survfit</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call: survfit(formula = Surv(time, cens) ~ group, data = leuk)
 ## 
@@ -323,7 +318,7 @@
 <li>Without any events, median follow-up time can be calculated the obvious way</li>
 <li>With events, a simple median will <em>under-estimate</em> the potential follow-up time. Use a reverse Kaplan-Meier estimate instead:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu">survfit</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="fl">1</span><span class="op">-</span><span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call: survfit(formula = Surv(time, 1 - cens) ~ group, data = leuk)
 ## 
@@ -379,16 +374,12 @@
 </ul>
 </li>
 </ul>
-</div>
-<div id="comparing-groups-log-rank-test" class="section level1">
-<h1 class="hasAnchor">
-<a href="#comparing-groups-log-rank-test" class="anchor"></a>Comparing groups: Log-rank test</h1>
 <div id="setting-for-the-logrank-test" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-for-the-logrank-test" class="anchor"></a>Setting for the Logrank Test</h2>
 <p><span class="math inline">\(H_0\)</span>: The risk in two or more groups is the same. Observed differences in numbers of events only occur by chance.</p>
 
-<div class="sourceCode" id="cb8"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu">survdiff</span><span class="op">(</span><span class="fu">Surv</span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = Surv(time, cens) ~ group, data = leuk)
@@ -421,10 +412,9 @@
 </li>
 </ul>
 </div>
-</div>
-<div id="summary" class="section level1">
-<h1 class="hasAnchor">
-<a href="#summary" class="anchor"></a>Summary</h1>
+<div id="summary" class="section level2">
+<h2 class="hasAnchor">
+<a href="#summary" class="anchor"></a>Summary</h2>
 <ul>
 <li>Censoring requires special methods to make full use of the data</li>
 <li>Kaplan-Meier estimate provides non-parametric estimate of the survival function
@@ -438,6 +428,7 @@
 </ul>
 </li>
 </ul>
+</div>
 </div>
   </div>
 
