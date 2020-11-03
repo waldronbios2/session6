@@ -1,5 +1,5 @@
 ---
-title: "Session 6 lab exercise: What it's about"
+title: "Session 6 lab exercise: Survival Analysis part 1"
 author: "Levi Waldron"
 institute: "CUNY SPH Biostatistics 2"
 clean: false
@@ -16,10 +16,16 @@ always_allow_html: true
 
 **Learning objectives**
 
-1. Learning objective 1
+1. Calculate Kaplan-Meier estimates of survival probability over time
+2. Plot survival curves for censored time-to-event data
+3. Perform and interpret log-rank test
+4. Define "informative" censoring
 
 **Exercises**
 
-1. Exercise 1
-
-
+1. Calculate the follow-up table for 6 MP patients in the leukemia study
+2. Plot the Kaplan-Meier estimate of the follow-up table from 1. `library(survminer)` is recommendable. 
+3. What is the 75th percentile of survival times for the 6 MP group? For the Placebo group? This is the time that 75% of the patients survive.
+4. Suppose you were instructed to cap follow-up times at 20 weeks. Re-do the Kaplan-Meier plot for both groups, and re-do the logrank test.
+5. Give a hypothetical example of how censoring in this example might be "informative."
+ 

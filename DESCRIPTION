@@ -1,12 +1,15 @@
 Package: session6
 Type: Package
-Title: Lecture and lab materials for CUNY Biostatistics 2 session 6
+Title: Survival Analysis part 1
 Version: 0.1.0
 Authors@R: person("Levi", "Waldron", , "lwaldron.research@gmail.com", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0003-2725-0694"))
 Maintainer: Levi Waldron <lwaldron.research@gmail.com>
-Description: Description of this session
+Description: Introduction to censored data, the Kaplan-Meier estimator of 
+    survival probability, and the log-rank test.
 Imports:
+    survminer,
+    survival,
     tidyverse
 Suggests:
     pkgdown,
