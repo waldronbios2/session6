@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,14 +39,14 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">session6</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lecture and Lab
      
     <span class="caret"></span>
@@ -57,23 +59,23 @@
       <a href="../articles/session_lecture.pdf">Lecture notes PDF</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../articles/session_lab.html">Lab materials</a>
     </li>
   </ul>
 </li>
-<li class="dropdown-header">
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/waldronbios2/session6/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/waldronbios2/session6/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/leviwaldron1">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+  <a href="https://twitter.com/leviwaldron1" class="external-link">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -87,39 +89,42 @@
 
       
 
-      </header><script src="session_lecture_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Session 6: Survival Analysis I</h1>
-                        <h4 class="author">Levi Waldron</h4>
+                        <h4 data-toc-skip class="author">Levi
+Waldron</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/waldronbios2/session6/blob/master/vignettes/session_lecture.Rmd"><code>vignettes/session_lecture.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/waldronbios2/session6/blob/HEAD/vignettes/session_lecture.Rmd" class="external-link"><code>vignettes/session_lecture.Rmd</code></a></small>
       <div class="hidden name"><code>session_lecture.Rmd</code></div>
 
     </div>
 
     
     
-<div id="learning-objectives-and-outline" class="section level1">
-<h1 class="hasAnchor">
-<a href="#learning-objectives-and-outline" class="anchor"></a>Learning objectives and outline</h1>
-<div id="learning-objectives" class="section level2">
-<h2 class="hasAnchor">
-<a href="#learning-objectives" class="anchor"></a>Learning objectives</h2>
+<div class="section level2">
+<h2 id="learning-objectives-and-outline">Learning objectives and outline<a class="anchor" aria-label="anchor" href="#learning-objectives-and-outline"></a>
+</h2>
+<div class="section level3">
+<h3 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Define main types of censoring</li>
 <li>Define the assumption of uninformative censoring</li>
-<li>Define survival function, hazard functions, cumulative event function</li>
+<li>Define survival function, hazard functions, cumulative event
+function</li>
 <li>Perform a Kaplan-Meier estimate</li>
-<li>Perform, interpret, and identify assumptions of the logrank test</li>
+<li>Perform, interpret, and identify assumptions of the logrank
+test</li>
 <li>Define and calculate potential follow-up time</li>
 <li>Calculate median survival time</li>
 </ol>
 </div>
-<div id="outline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#outline" class="anchor"></a>Outline</h2>
+<div class="section level3">
+<h3 id="outline">Outline<a class="anchor" aria-label="anchor" href="#outline"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Introduction to censored data
 <ul>
@@ -133,16 +138,18 @@
 </ol>
 <ul>
 <li>Vittinghoff sections 3.1-3.5</li>
-<li>Tutorial Paper <em>Survival Analysis Part I: Basic concepts and first analyses</em> by Clark, Bradburn, Love, Altman. British Journal of Cancer (2003) 89, 232 – 238</li>
+<li>Tutorial Paper <em>Survival Analysis Part I: Basic concepts and
+first analyses</em> by Clark, Bradburn, Love, Altman. British Journal of
+Cancer (2003) 89, 232 – 238</li>
 </ul>
 </div>
 </div>
-<div id="introduction-to-censored-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction-to-censored-data" class="anchor"></a>Introduction to censored data</h1>
-<div id="outcome-variable-time-to-event" class="section level2">
-<h2 class="hasAnchor">
-<a href="#outcome-variable-time-to-event" class="anchor"></a>Outcome variable: time to event</h2>
+<div class="section level2">
+<h2 id="introduction-to-censored-data">Introduction to censored data<a class="anchor" aria-label="anchor" href="#introduction-to-censored-data"></a>
+</h2>
+<div class="section level3">
+<h3 id="outcome-variable-time-to-event">Outcome variable: time to event<a class="anchor" aria-label="anchor" href="#outcome-variable-time-to-event"></a>
+</h3>
 <ul>
 <li>Generally time to the occurrence of a particular event, e.g. 
 <ul>
@@ -151,7 +158,8 @@
 <li>or other experience of interest</li>
 </ul>
 </li>
-<li>Time: The time from the beginning of an observation period t0 (e.g. surgery) to:
+<li>Time: The time from the beginning of an observation period t0
+(e.g. surgery) to:
 <ul>
 <li>an event, or</li>
 <li>end of the study, or</li>
@@ -160,13 +168,16 @@
 </li>
 </ul>
 </div>
-<div id="typical-research-questions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#typical-research-questions" class="anchor"></a>Typical research questions</h2>
+<div class="section level3">
+<h3 id="typical-research-questions">Typical research questions<a class="anchor" aria-label="anchor" href="#typical-research-questions"></a>
+</h3>
 <ul>
-<li>What is the median survival time (in years) of patients diagnosed with a certain disease?</li>
-<li>What is the probability of those patients surviving for at least 5 years?</li>
-<li>Are certain personal, behavioral, or clinical characteristics correlated with participant’s chance of survival?</li>
+<li>What is the median survival time (in years) of patients diagnosed
+with a certain disease?</li>
+<li>What is the probability of those patients surviving for at least 5
+years?</li>
+<li>Are certain personal, behavioral, or clinical characteristics
+correlated with participant’s chance of survival?</li>
 <li>Is there a survival difference between groups?
 <ul>
 <li>e.g. treatment vs. control</li>
@@ -175,18 +186,20 @@
 </li>
 </ul>
 </div>
-<div id="special-considerations-in-survival-analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#special-considerations-in-survival-analysis" class="anchor"></a>Special considerations in survival analysis</h2>
+<div class="section level3">
+<h3 id="special-considerations-in-survival-analysis">Special considerations in survival analysis<a class="anchor" aria-label="anchor" href="#special-considerations-in-survival-analysis"></a>
+</h3>
 <ul>
 <li>Survival data requires special techniques:
 <ul>
 <li>Survival data is generally not normally distributed</li>
 <li>
-<strong>Censoring</strong> - observe individuals for differing lengths of time that may or may not result in an “event”</li>
+<strong>Censoring</strong> - observe individuals for differing
+lengths of time that may or may not result in an “event”</li>
 </ul>
 </li>
-<li>Censoring is a key challenge in survival analysis. Consider a clinical study where:
+<li>Censoring is a key challenge in survival analysis. Consider a
+clinical study where:
 <ul>
 <li>patient 1 dies 1 month after diagnosis</li>
 <li>patient 2 dies 12 years after diagnosis</li>
@@ -196,181 +209,225 @@
 </li>
 </ul>
 <p><em>Question #1: which patients are “censored?”</em></p>
-<p><em>Question #2: how would you rank these patients in order of disease severity?</em></p>
+<p><em>Question #2: how would you rank these patients in order of
+disease severity?</em></p>
 </div>
-<div id="left-right-interval-censoring" class="section level2">
-<h2 class="hasAnchor">
-<a href="#left-right-interval-censoring" class="anchor"></a>Left / right / interval censoring</h2>
+<div class="section level3">
+<h3 id="left-right-interval-censoring">Left / right / interval censoring<a class="anchor" aria-label="anchor" href="#left-right-interval-censoring"></a>
+</h3>
 <ul>
 <li>
-<em>right censoring</em>: The event (if it occurs) happens past the end of the observation period</li>
+<em>right censoring</em>: The event (if it occurs) happens past the
+end of the observation period</li>
 <li>
-<em>left censoring</em>: We observe the presence of a state or condition but do not know when it began.
+<em>left censoring</em>: We observe the presence of a state or
+condition but do not know when it began.
 <ul>
-<li>Example: a study investigating the time to recurrence of a cancer following surgical removal of the primary tumor. If the patients were examined 3 months after surgery to determine recurrence, then those who had a recurrence would have a survival time that was left censored because the actual time of recurrence occurred less than 3 months after surgery.</li>
+<li>Example: a study investigating the time to recurrence of a cancer
+following surgical removal of the primary tumor. If the patients were
+examined 3 months after surgery to determine recurrence, then those who
+had a recurrence would have a survival time that was left censored
+because the actual time of recurrence occurred less than 3 months after
+surgery.</li>
 </ul>
 </li>
 <li>
-<em>interval censoring</em>: individuals come in and out of observation.</li>
+<em>interval censoring</em>: individuals come in and out of
+observation.</li>
 </ul>
-<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
+<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="external-link uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
 </div>
-<div id="classes-of-uninformative-censoring" class="section level2">
-<h2 class="hasAnchor">
-<a href="#classes-of-uninformative-censoring" class="anchor"></a>Classes of uninformative censoring</h2>
+<div class="section level3">
+<h3 id="classes-of-uninformative-censoring">Classes of uninformative censoring<a class="anchor" aria-label="anchor" href="#classes-of-uninformative-censoring"></a>
+</h3>
 <ul>
 <li>
 <em>type 1 censoring</em>: The total duration of the study is fixed
 <ul>
-<li>a generalization is <em>fixed censoring</em>: each individual has a potentially different maximum observation time, but still fixed in advance</li>
+<li>a generalization is <em>fixed censoring</em>: each individual has a
+potentially different maximum observation time, but still fixed in
+advance</li>
 </ul>
 </li>
 <li>
-<em>type 2 censoring</em>: The sample is followed as long as necessary until a pre-specified number of events have occurred
+<em>type 2 censoring</em>: The sample is followed as long as
+necessary until a pre-specified number of events have occurred
 <ul>
 <li>the length of the study is unknown in advance</li>
 </ul>
 </li>
 <li>
-<em>random censoring</em>: the censoring times are independent random variables</li>
+<em>random censoring</em>: the censoring times are independent
+random variables</li>
 </ul>
 <p>These are all analyzed in essentially the same way.</p>
-<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
+<p>Source: <a href="https://data.princeton.edu/wws509/notes/c7.pdf" class="external-link uri">https://data.princeton.edu/wws509/notes/c7.pdf</a></p>
 </div>
 </div>
-<div id="informative-uninformative-censoring" class="section level1">
-<h1 class="hasAnchor">
-<a href="#informative-uninformative-censoring" class="anchor"></a>Informative / uninformative censoring</h1>
+<div class="section level2">
+<h2 id="informative-uninformative-censoring">Informative / uninformative censoring<a class="anchor" aria-label="anchor" href="#informative-uninformative-censoring"></a>
+</h2>
 <ul>
 <li>
-<em>Uninformative censoring</em>: The most basic assumption we will make is that the censoring of an observation does not provide any information about survival other than that it exceeds the time of the censoring</li>
-<li>Can be violated if, for example, higher risk of death causes study dropout</li>
-<li>Similar to when we assume data missing at random or completely at random</li>
+<em>Uninformative censoring</em>: The most basic assumption we will
+make is that the censoring of an observation does not provide any
+information about survival other than that it exceeds the time of the
+censoring</li>
+<li>Can be violated if, for example, higher risk of death causes study
+dropout</li>
+<li>Similar to when we assume data missing at random or completely at
+random</li>
 </ul>
-<div id="survival-function-st" class="section level2">
-<h2 class="hasAnchor">
-<a href="#survival-function-st" class="anchor"></a>Survival function S(t)</h2>
+<div class="section level3">
+<h3 id="survival-function-st">Survival function S(t)<a class="anchor" aria-label="anchor" href="#survival-function-st"></a>
+</h3>
 <ul>
-<li>The Survival function at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being event-free at t.<br>
+<li>The Survival function at time t, denoted <span class="math inline">\(S(t)\)</span>, is the probability of being
+event-free at t.<br>
 </li>
-<li>Equivalently, it is the probability that the survival time is greater than t.</li>
+<li>Equivalently, it is the probability that the survival time is
+greater than t.</li>
 </ul>
 </div>
-<div id="leukemia-example-see-leuk-csv" class="section level2">
-<h2 class="hasAnchor">
-<a href="#leukemia-example-see-leuk-csv" class="anchor"></a>leukemia Example: see leuk.csv</h2>
+<div class="section level3">
+<h3 id="leukemia-example-see-leuk-csv">leukemia Example: see leuk.csv<a class="anchor" aria-label="anchor" href="#leukemia-example-see-leuk-csv"></a>
+</h3>
 <ul>
-<li>Study of 6-mercaptopurine (6-MP) maintenance therapy for children in remission from acute lymphoblastic leukemia (ALL)</li>
-<li>42 patients achieved remission from induction therapy and were then randomized in equal numbers to 6-MP or placebo.</li>
+<li>Study of 6-mercaptopurine (6-MP) maintenance therapy for children in
+remission from acute lymphoblastic leukemia (ALL)</li>
+<li>42 patients achieved remission from induction therapy and were then
+randomized in equal numbers to 6-MP or placebo.</li>
 <li>Survival time studied was from randomization until relapse.</li>
 </ul>
 <p>Survival times in weeks for Placebo group:</p>
-<pre><code>##  [1]  1  1  2  2  3  4  4  5  5  8  8  8  8 11 11 12 12 15 17 22 23</code></pre>
+<pre><code><span><span class="co">##  [1]  1  1  2  2  3  4  4  5  5  8  8  8  8 11 11 12 12 15 17 22 23</span></span></code></pre>
 <p>Survival times in weeks for Treatment group:</p>
-<pre><code>##  [1]  6   6   6   7  10  13  16  22  23   6+  9+ 10+ 11+ 17+ 19+ 20+ 25+ 32+ 32+
-## [20] 34+ 35+</code></pre>
+<pre><code><span><span class="co">##  [1]  6   6   6   7  10  13  16  22  23   6+  9+ 10+ 11+ 17+ 19+ 20+ 25+ 32+ 32+</span></span>
+<span><span class="co">## [20] 34+ 35+</span></span></code></pre>
 </div>
-<div id="a-graphical-look-at-the-treatment-group" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-graphical-look-at-the-treatment-group" class="anchor"></a>A graphical look at the treatment group</h2>
+<div class="section level3">
+<h3 id="a-graphical-look-at-the-treatment-group">A graphical look at the treatment group<a class="anchor" aria-label="anchor" href="#a-graphical-look-at-the-treatment-group"></a>
+</h3>
 <p><img src="session_lecture_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>(Initiation times (t0) are simulated between 0 and 26 weeks)</p>
 </div>
-<div id="leukemia-study-follow-up-table" class="section level2">
-<h2 class="hasAnchor">
-<a href="#leukemia-study-follow-up-table" class="anchor"></a>leukemia study follow-up table</h2>
-<div class="figure">
-<img src="figures/leukemiatable.png" alt=""><p class="caption">leukemia Follow-up Table</p>
+<div class="section level3">
+<h3 id="leukemia-study-follow-up-table">leukemia study follow-up table<a class="anchor" aria-label="anchor" href="#leukemia-study-follow-up-table"></a>
+</h3>
+<div class="float">
+<img src="figures/leukemiatable.png" alt="leukemia Follow-up Table"><div class="figcaption">leukemia Follow-up Table</div>
 </div>
 <p>This is the <strong>Kaplan-Meier Estimate</strong> <span class="math inline">\(\hat S(t)\)</span> of the Survival function <span class="math inline">\(S(t)\)</span>.</p>
 </div>
 </div>
-<div id="survival-function-and-kaplan-meier-estimator" class="section level1">
-<h1 class="hasAnchor">
-<a href="#survival-function-and-kaplan-meier-estimator" class="anchor"></a>Survival function and Kaplan-Meier estimator</h1>
-<div id="kaplan-meier-estimate" class="section level2">
-<h2 class="hasAnchor">
-<a href="#kaplan-meier-estimate" class="anchor"></a>Kaplan-Meier Estimate</h2>
+<div class="section level2">
+<h2 id="survival-function-and-kaplan-meier-estimator">Survival function and Kaplan-Meier estimator<a class="anchor" aria-label="anchor" href="#survival-function-and-kaplan-meier-estimator"></a>
+</h2>
+<div class="section level3">
+<h3 id="kaplan-meier-estimate">Kaplan-Meier Estimate<a class="anchor" aria-label="anchor" href="#kaplan-meier-estimate"></a>
+</h3>
 <p><img src="session_lecture_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
-<div id="median-survival-time" class="section level2">
-<h2 class="hasAnchor">
-<a href="#median-survival-time" class="anchor"></a>Median Survival Time</h2>
-<p><em>Definition</em>: <em>Median Survival Time</em> is the time at which half of a group (sample, population) is expected to experience an event (in this example, death)</p>
+<div class="section level3">
+<h3 id="median-survival-time">Median Survival Time<a class="anchor" aria-label="anchor" href="#median-survival-time"></a>
+</h3>
+<p><em>Definition</em>: <em>Median Survival Time</em> is the time at
+which half of a group (sample, population) is expected to experience an
+event (in this example, death)</p>
 <ul>
-<li>Without censoring, median survival time can be calculated the obvious way</li>
-<li>With censoring, we need to use the Kaplan-Meier estimate of the survival function <span class="math inline">\(\hat S(t)\)</span>
+<li>Without censoring, median survival time can be calculated the
+obvious way</li>
+<li>With censoring, we need to use the Kaplan-Meier estimate of the
+survival function <span class="math inline">\(\hat S(t)\)</span>
 </li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
-<pre><code>## Call: survfit(formula = Surv(time, cens) ~ group, data = leuk)
-## 
-##                n events median 0.95LCL 0.95UCL
-## group=6 MP    21      9     23      16      NA
-## group=Placebo 21     21      8       4      12</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html" class="external-link">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Call: survfit(formula = Surv(time, cens) ~ group, data = leuk)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##                n events median 0.95LCL 0.95UCL</span></span>
+<span><span class="co">## group=6 MP    21      9     23      16      NA</span></span>
+<span><span class="co">## group=Placebo 21     21      8       4      12</span></span></code></pre>
 </div>
-<div id="median-potential-follow-up-time" class="section level2">
-<h2 class="hasAnchor">
-<a href="#median-potential-follow-up-time" class="anchor"></a>Median Potential Follow-Up Time</h2>
-<p><em>Definition</em>: <em>Median Potential Follow-Up Time</em> is the time for which half of a sample would have been expected to be followe, <em>in the absence of events</em>.</p>
+<div class="section level3">
+<h3 id="median-potential-follow-up-time">Median Potential Follow-Up Time<a class="anchor" aria-label="anchor" href="#median-potential-follow-up-time"></a>
+</h3>
+<p><em>Definition</em>: <em>Median Potential Follow-Up Time</em> is the
+time for which half of a sample would have been expected to be followe,
+<em>in the absence of events</em>.</p>
 <ul>
-<li>Without any events, median follow-up time can be calculated the obvious way</li>
-<li>With events, a simple median will <em>under-estimate</em> the potential follow-up time. Use a reverse Kaplan-Meier estimate instead:</li>
+<li>Without any events, median follow-up time can be calculated the
+obvious way</li>
+<li>With events, a simple median will <em>under-estimate</em> the
+potential follow-up time. Use a reverse Kaplan-Meier estimate
+instead:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="fl">1</span><span class="op">-</span><span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
-<pre><code>## Call: survfit(formula = Surv(time, 1 - cens) ~ group, data = leuk)
-## 
-##                n events median 0.95LCL 0.95UCL
-## group=6 MP    21     12     25      17      NA
-## group=Placebo 21      0     NA      NA      NA</code></pre>
-<p><em>Note</em>: <em>Actual</em> median follow-up time is half as long for the placebo group, but there is not reason to believe the potential follow-up times were different</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html" class="external-link">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="fl">1</span><span class="op">-</span><span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Call: survfit(formula = Surv(time, 1 - cens) ~ group, data = leuk)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##                n events median 0.95LCL 0.95UCL</span></span>
+<span><span class="co">## group=6 MP    21     12     25      17      NA</span></span>
+<span><span class="co">## group=Placebo 21      0     NA      NA      NA</span></span></code></pre>
+<p><em>Note</em>: <em>Actual</em> median follow-up time is half as long
+for the placebo group, but there is not reason to believe the potential
+follow-up times were different</p>
 </div>
-<div id="cumulative-event-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cumulative-event-function" class="anchor"></a>Cumulative Event Function</h2>
-<p><em>Definition</em>: The <em>cumulative event function</em> at time t, denoted <span class="math inline">\(F(t)\)</span>, is the probability that the event has occurred by time t, or equivalently, the probability that the survival time is less than or equal to t. Note <span class="math inline">\(F(t) = 1-S(t)\)</span>.</p>
+<div class="section level3">
+<h3 id="cumulative-event-function">Cumulative Event Function<a class="anchor" aria-label="anchor" href="#cumulative-event-function"></a>
+</h3>
+<p><em>Definition</em>: The <em>cumulative event function</em> at time
+t, denoted <span class="math inline">\(F(t)\)</span>, is the probability
+that the event has occurred by time t, or equivalently, the probability
+that the survival time is less than or equal to t. Note <span class="math inline">\(F(t) = 1-S(t)\)</span>.</p>
 <p><img src="session_lecture_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
-<div id="hazard-and-cumulative-hazard-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hazard-and-cumulative-hazard-functions" class="anchor"></a>Hazard and Cumulative Hazard functions</h2>
+<div class="section level3">
+<h3 id="hazard-and-cumulative-hazard-functions">Hazard and Cumulative Hazard functions<a class="anchor" aria-label="anchor" href="#hazard-and-cumulative-hazard-functions"></a>
+</h3>
 <ul>
 <li>
-<span class="math inline">\(h(t)\)</span>: hazard function, risk of event at a point in time
+<span class="math inline">\(h(t)\)</span>: hazard function, risk of
+event at a point in time
 <ul>
 <li>only calculated by software</li>
 </ul>
 </li>
 <li>
-<span class="math inline">\(H(t) = -log[S(t)]\)</span>: cumulative hazard function
+<span class="math inline">\(H(t) = -log[S(t)]\)</span>: cumulative
+hazard function
 <ul>
 <li>not easily interpretable</li>
-<li>cumulative force of mortality, or the number of events that would be expected for each individual by time t if the event were a repeatable process.</li>
+<li>cumulative force of mortality, or the number of events that would be
+expected for each individual by time t if the event were a repeatable
+process.</li>
 </ul>
 </li>
 <li>Will be important next class for Cox Proportional Hazards</li>
 </ul>
 </div>
 </div>
-<div id="comparing-groups-using-the-logrank-test" class="section level1">
-<h1 class="hasAnchor">
-<a href="#comparing-groups-using-the-logrank-test" class="anchor"></a>Comparing Groups Using the Logrank Test</h1>
-<div id="log-rank-test" class="section level2">
-<h2 class="hasAnchor">
-<a href="#log-rank-test" class="anchor"></a>Log-rank test</h2>
+<div class="section level2">
+<h2 id="comparing-groups-using-the-logrank-test">Comparing Groups Using the Logrank Test<a class="anchor" aria-label="anchor" href="#comparing-groups-using-the-logrank-test"></a>
+</h2>
+<div class="section level3">
+<h3 id="log-rank-test">Log-rank test<a class="anchor" aria-label="anchor" href="#log-rank-test"></a>
+</h3>
 <ul>
 <li>
-<em>logrank test</em> is used to compare survival between two or more groups
+<em>logrank test</em> is used to compare survival between two or
+more groups
 <ul>
 <li>
-<span class="math inline">\(H_0\)</span> is that the population survival functions are equal at all follow-up times</li>
+<span class="math inline">\(H_0\)</span> is that the population
+survival functions are equal at all follow-up times</li>
 <li>
-<span class="math inline">\(H_1\)</span> is that the population survival functions differ at at least one follow-up time</li>
+<span class="math inline">\(H_1\)</span> is that the population
+survival functions differ at at least one follow-up time</li>
 </ul>
 </li>
-<li>logrank test is really just a <em>chi-square test</em> comparing expected vs. observed number of events in each group.
+<li>logrank test is really just a <em>chi-square test</em> comparing
+expected vs. observed number of events in each group.
 <ul>
 <li>Observed is just what we see.</li>
 <li>How to calculate expected?</li>
@@ -378,52 +435,58 @@
 </li>
 </ul>
 </div>
-<div id="log-rank-test-contd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#log-rank-test-contd" class="anchor"></a>Log-rank test (cont’d)</h2>
-<p>Logrank test is just a chisquare test on the observed and expected number of events:</p>
-
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/survival/man/survdiff.html">survdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></pre></div>
-<pre><code>## Call:
-## survdiff(formula = Surv(time, cens) ~ group, data = leuk)
-## 
-##                N Observed Expected (O-E)^2/E (O-E)^2/V
-## group=6 MP    21        9     19.3      5.46      16.8
-## group=Placebo 21       21     10.7      9.77      16.8
-## 
-##  Chisq= 16.8  on 1 degrees of freedom, p= 4e-05</code></pre>
+<div class="section level3">
+<h3 id="log-rank-test-contd">Log-rank test (cont’d)<a class="anchor" aria-label="anchor" href="#log-rank-test-contd"></a>
+</h3>
+<p>Logrank test is just a chisquare test on the observed and expected
+number of events:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survdiff.html" class="external-link">survdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">cens</span><span class="op">)</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">leuk</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Call:</span></span>
+<span><span class="co">## survdiff(formula = Surv(time, cens) ~ group, data = leuk)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##                N Observed Expected (O-E)^2/E (O-E)^2/V</span></span>
+<span><span class="co">## group=6 MP    21        9     19.3      5.46      16.8</span></span>
+<span><span class="co">## group=Placebo 21       21     10.7      9.77      16.8</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##  Chisq= 16.8  on 1 degrees of freedom, p= 4e-05</span></span></code></pre>
 <ul>
-<li>Many alternatives are available, but log-rank should be the default unless you have good reason.
+<li>Many alternatives are available, but log-rank should be the default
+unless you have good reason.
 <ul>
 <li>E.g. Wilcoxon (Breslow), Tarone-Ware, Peto tests</li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="notes-about-the-logrank-test" class="section level2">
-<h2 class="hasAnchor">
-<a href="#notes-about-the-logrank-test" class="anchor"></a>Notes about the Logrank Test</h2>
+<div class="section level3">
+<h3 id="notes-about-the-logrank-test">Notes about the Logrank Test<a class="anchor" aria-label="anchor" href="#notes-about-the-logrank-test"></a>
+</h3>
 <ul>
 <li>Non-parametric: no assumptions on the form of <span class="math inline">\(S(t)\)</span>
 </li>
-<li>Log-rank test and K-M curves don’t work with continuous predictors</li>
+<li>Log-rank test and K-M curves don’t work with continuous
+predictors</li>
 <li>Assumes <em>non-informative censoring</em>:
 <ul>
-<li>censoring is unrelated to the likelihood of developing the event of interest</li>
-<li>for each subject, his/her censoring time is statistically independent from their failure time</li>
+<li>censoring is unrelated to the likelihood of developing the event of
+interest</li>
+<li>for each subject, his/her censoring time is statistically
+independent from their failure time</li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="summary" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary" class="anchor"></a>Summary</h2>
+<div class="section level3">
+<h3 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h3>
 <ul>
 <li>Censoring requires special methods to make full use of the data</li>
-<li>Kaplan-Meier estimate provides non-parametric estimate of the survival function
+<li>Kaplan-Meier estimate provides non-parametric estimate of the
+survival function
 <ul>
-<li>non-parametric meaning that no form of the survival function is assumed; instead it is empirically estimated</li>
+<li>non-parametric meaning that no form of the survival function is
+assumed; instead it is empirically estimated</li>
 </ul>
 </li>
 <li>Logrank test provides a non-parametric hypothesis test
@@ -447,11 +510,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://waldronlab.io">Levi Waldron</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://waldronlab.io" class="external-link">Levi Waldron</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -459,6 +524,8 @@
 
   
 
+
+  
 
   </body>
 </html>
